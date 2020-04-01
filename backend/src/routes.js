@@ -4,7 +4,8 @@ const AuthController = require("./controllers/AuthController");
 
 const routes = express.Router();
 
-//Cadastro de usuário
-routes.post("/register", AuthController.create);
+//Auth
+routes.post("/register", AuthController.create); //Cadastro de usuário
+routes.post("/login", AuthController.login); //Login do usuário
 
 module.exports = routes;
