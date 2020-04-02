@@ -27,17 +27,13 @@ module.exports = {
     const { latitude, longitude } = request.body;
     const id = request.userId;
 
-    const localizacao = {
+    const location = {
       type: 'Point',
-      coordinates: [latitude, longitude],
+      coordinates: [longitude, latitude],
     };
 
     try {
-      const res = await User.findByIdAndUpdate(
-        id,
-        { localizacao },
-        { new: true }
-      );
+      const res = await User.findByIdAndUpdate(id, { location }, { new: true });
       return response.send({ res });
     } catch (err) {
       return response.status(400).send({ error: 'Failed to set location.' });

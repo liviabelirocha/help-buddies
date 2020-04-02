@@ -19,14 +19,14 @@ const UserSchema = new mongoose.Schema({
     select: false,
   },
   raio: Number,
-  localizacao: {
+  location: {
     type: PointSchema,
     index: '2dsphere',
   },
 });
 
 // eslint-disable-next-line prettier/prettier
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
   const hash = await bcrypt.hash(this.senha, 10);
   this.senha = hash;
   next();

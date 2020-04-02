@@ -15,7 +15,6 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "prettier/func-names": "off",
     "func-names": "off"
   }
 }
