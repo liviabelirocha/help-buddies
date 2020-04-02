@@ -1,34 +1,35 @@
-const mongoose = require("../../database");
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
+const mongoose = require('../../database');
 
-const PointSchema = require("./utils/PointSchema");
+const PointSchema = require('./utils/PointSchema');
 
 const UserSchema = new mongoose.Schema({
   nome: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     lowercase: true,
-    required: true
+    required: true,
   },
   senha: {
     type: String,
     required: true,
-    select: false
+    select: false,
   },
   raio: Number,
   localizacao: {
-    type: PointSchema
-    //index: "2dsphere"
-  }
+    type: PointSchema,
+    index: '2dsphere',
+  },
 });
 
-UserSchema.pre("save", async function(next) {
+// eslint-disable-next-line prettier/prettier
+UserSchema.pre('save', async function(next) {
   const hash = await bcrypt.hash(this.senha, 10);
   this.senha = hash;
   next();
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', UserSchema);
