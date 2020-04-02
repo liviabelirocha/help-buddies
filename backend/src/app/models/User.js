@@ -1,6 +1,8 @@
 const mongoose = require("../../database");
 const bcrypt = require("bcryptjs");
 
+const PointSchema = require("./utils/PointSchema");
+
 const UserSchema = new mongoose.Schema({
   nome: {
     type: String,
@@ -16,7 +18,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false
   },
-  endereco: String
+  raio: Number,
+  localizacao: {
+    type: PointSchema
+    //index: "2dsphere"
+  }
 });
 
 UserSchema.pre("save", async function(next) {

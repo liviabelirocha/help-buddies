@@ -38,6 +38,6 @@ module.exports = {
 
     const token = jwt.sign({ id: user.id }, authConfig.secret);
 
-    response.send({ user, token });
+    return response.send({ user, token });
   }
 };
