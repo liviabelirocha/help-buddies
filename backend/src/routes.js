@@ -3,6 +3,8 @@ const express = require('express');
 const AuthController = require('./app/controllers/AuthController');
 const UserController = require('./app/controllers/UserController');
 const DistanceController = require('./app/controllers/DistanceController');
+const ItemController = require('./app/controllers/ItemController');
+const RequestController = require('./app/controllers/RequestController');
 
 const SignUpValidation = require('./app/validations/SignUpValidation');
 const LoginValidation = require('./app/validations/LoginValidation');
@@ -22,5 +24,13 @@ routes.post('/user', authMiddleware, UserController.setLocation);
 
 // Distancia
 routes.get('/distance', authMiddleware, DistanceController.index);
+
+// Items
+routes.post('/items', authMiddleware, ItemController.create);
+routes.get('/items', authMiddleware, ItemController.index);
+
+// Requests
+routes.post('/requests', authMiddleware, RequestController.create);
+routes.get('/requests', authMiddleware, RequestController.index);
 
 module.exports = routes;
