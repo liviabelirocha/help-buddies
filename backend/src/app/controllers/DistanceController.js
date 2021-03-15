@@ -1,6 +1,8 @@
 const User = require('../models/User');
 
 module.exports.index = async function (request, response) {
+  console.log(request.userId);
+
   const id = request.userId;
 
   try {

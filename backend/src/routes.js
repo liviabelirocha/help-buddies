@@ -32,5 +32,6 @@ routes.get('/items', authMiddleware, ItemController.index);
 // Requests
 routes.post('/requests', authMiddleware, RequestController.create);
 routes.get('/requests', authMiddleware, RequestController.index);
+routes.get('/userRequests', authMiddleware, RequestController.get);
 
 module.exports = routes;
